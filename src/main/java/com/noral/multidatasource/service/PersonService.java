@@ -1,6 +1,7 @@
 package com.noral.multidatasource.service;
 
-import com.noral.multidatasource.person.Person;
+
+import com.noral.multidatasource.entity.Person;
 
 /**
  * @Author hu
@@ -13,5 +14,6 @@ public interface PersonService {
 
     Person getPersonSlave();
 
-    Person getPersonMaster();
+    int insertTo() throws Exception;
+
 }

@@ -17,7 +17,7 @@ import java.util.Map;
  * @Description:
  * @Date Create In 10:38 2018/11/29 0029
  */
-@Configuration
+//@Configuration
 public class RwsRoutingDataSource {
 
     @Autowired

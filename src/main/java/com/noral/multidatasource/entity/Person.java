@@ -1,12 +1,8 @@
-package com.noral.multidatasource.person;
+package com.noral.multidatasource.entity;
 
-/**
- * @Author hu
- * @Description:
- * @Date Create In 12:11 2018/11/29 0029
- */
 public class Person {
     private Integer id;
+
     private String name;
 
     public Integer getId() {
