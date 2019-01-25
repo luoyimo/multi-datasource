@@ -17,8 +17,12 @@ public class MultiDatasourceApplicationTests {
     @Test
     public void testForChangeDataSource() {
         System.out.println(personService.getPerson());
+        //Person{id=1, name='datasource1'}
         System.out.println(personService.getPersonSlave());
+        //Person{id=2, name='datasource2'}
         System.out.println(personService.getPersonMaster());
+        //Person{id=1, name='datasource1'}
     }
+
 
 }
