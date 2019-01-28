@@ -12,7 +12,7 @@ spring:
         maxActive: 20
         maxWait: 60000
         timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 30
+        minEvictableIdleTimeMillis: 30000
         validationQuery: SELECT 1
         validationQueryTimeout: 10000
         testWhileIdle: true
@@ -33,7 +33,7 @@ spring:
         maxActive: 20
         maxWait: 60000
         timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 30
+        minEvictableIdleTimeMillis: 30000
         validationQuery: SELECT 1
         validationQueryTimeout: 10000
         testWhileIdle: true

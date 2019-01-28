@@ -16,4 +16,9 @@ public interface PersonService {
 
     int insertTo() throws Exception;
 
+    int insertTo2() throws Exception;
+
+
+    int insertTo1() throws Exception;
+
 }

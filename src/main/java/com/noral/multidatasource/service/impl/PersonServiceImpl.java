@@ -1,8 +1,10 @@
 package com.noral.multidatasource.service.impl;
 
+import com.noral.multidatasource.configuration.DataSourceContextHolder;
+import com.noral.multidatasource.configuration.annotation.NormalDataSource;
+import com.noral.multidatasource.configuration.annotation.SlaveDataSource;
 import com.noral.multidatasource.entity.Person;
-import com.noral.multidatasource.mapper.master.MasterPersonMapper;
-import com.noral.multidatasource.mapper.slave.SlavePersonMapper;
+import com.noral.multidatasource.mapper.SlavePersonMapper;
 import com.noral.multidatasource.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,13 +26,14 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private SlavePersonMapper slavePersonMapper;
 
-    @Autowired
-    private MasterPersonMapper masterPersonMapper;
+//    @Autowired
+//    private MasterPersonMapper masterPersonMapper;
 
     @Override
     public Person getPerson() {
-        Person person = masterPersonMapper.selectByPrimaryKey(1);
-        return person;
+//        Person person = masterPersonMapper.selectByPrimaryKey(1);
+//        return person;
+        return null;
     }
 
 
@@ -42,18 +45,42 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional(transactionManager = "xatx", rollbackFor = Exception.class)
+    @SlaveDataSource
     public int insertTo() throws Exception {
         Person person = new Person();
-        person.setId(3);
+//        person.setId(3);
+        DataSourceContextHolder.setSlave();
         person.setName("一致性");
         slavePersonMapper.insert(person);
-        if (true) {
+        boolean flag = true;
+        if (flag) {
             throw new Exception("一致性问题");
         }
-        masterPersonMapper.insert(person);
+        DataSourceContextHolder.setMaster();
+        slavePersonMapper.insert(person);
         return 0;
 
     }
 
 
+    @Override
+    @Transactional(transactionManager = "dataSourceTransactionManager", rollbackFor = Exception.class)
+    @NormalDataSource
+    public int insertTo2() throws Exception {
+        Person person = new Person();
+        person.setName("一致性");
+        slavePersonMapper.insert(person);
+        return 0;
+
+    }
+
+    @Override
+    @Transactional(transactionManager = "xatx", rollbackFor = Exception.class)
+    @SlaveDataSource
+    public int insertTo1() throws Exception {
+        Person person = new Person();
+        person.setName("一致性");
+        slavePersonMapper.insert(person);
+        return 0;
+    }
 }

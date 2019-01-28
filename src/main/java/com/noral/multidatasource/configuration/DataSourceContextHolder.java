@@ -10,6 +10,7 @@ public class DataSourceContextHolder {
     private static final ThreadLocal<String> LOCAL = new ThreadLocal<String>();
     public static final String MASTER = "master";
     public static final String SLAVE = "slave";
+    public static final String NORMAL = "normal";
 
     public static ThreadLocal<String> getLocal() {
         return LOCAL;
@@ -21,6 +22,10 @@ public class DataSourceContextHolder {
 
     public static void setSlave() {
         LOCAL.set(SLAVE);
+    }
+
+    public static void setNormal() {
+        LOCAL.set(NORMAL);
     }
 
 

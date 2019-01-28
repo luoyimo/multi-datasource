@@ -1,13 +1,17 @@
 package com.noral.multidatasource.configuration;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 import javax.sql.DataSource;
@@ -49,6 +53,14 @@ public class DataSourceConfiguration {
         return ds;
     }
 
+    @Bean(name = "noralDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.druid.master")
+    public DataSource dataSource() {
+        DataSource dataSource = DataSourceBuilder.create().type(DruidDataSource.class).build();
+        ((DruidDataSource) dataSource).setName("normalDataSource");
+        return dataSource;
+    }
+
 
     /**
      * 注入事物管理器
@@ -60,6 +72,12 @@ public class DataSourceConfiguration {
         UserTransactionManager userTransactionManager = new UserTransactionManager();
         UserTransaction userTransaction = new UserTransactionImp();
         return new JtaTransactionManager(userTransaction, userTransactionManager);
+    }
+
+
+    @Bean
+    public DataSourceTransactionManager dataSourceTransactionManager() {
+        return new DataSourceTransactionManager(dataSource());
     }
 
 

@@ -21,6 +21,8 @@ public class DataSourceChangeAop {
 
     private final String masterAop = "@annotation(com.noral.multidatasource.configuration.annotation.MasterDataSource)";
 
+    private final String normalAop = "@annotation(com.noral.multidatasource.configuration.annotation.NormalDataSource)";
+
     @Before(slaveAop)
     public void changeToSlaveDataSource() {
         DataSourceContextHolder.setSlave();
@@ -32,7 +34,13 @@ public class DataSourceChangeAop {
         DataSourceContextHolder.setMaster();
     }
 
-    @After("(" + slaveAop + "||" + masterAop + ")")
+
+    @Before(normalAop)
+    public void changeToNormalDataSource() {
+        DataSourceContextHolder.setNormal();
+    }
+
+    @After("(" + slaveAop + "||" + masterAop + "||" + normalAop + ")")
     public void after() {
         DataSourceContextHolder.clear();
     }
