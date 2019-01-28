@@ -5,7 +5,7 @@ package com.noral.multidatasource.configuration;
  * @Description:
  * @Date Create In 10:24 2018/11/29 0029
  */
-public class DataSourceContextHolder {
+public final class DataSourceContextHolder {
 
     private static final ThreadLocal<String> LOCAL = new ThreadLocal<String>();
     public static final String MASTER = "master";

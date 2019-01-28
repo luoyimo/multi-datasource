@@ -1,4 +1,0 @@
-{"id":"10.0.75.1.tm154864316096305944","wasCommitted":false,"participants":[{"uri":"10.0.75.1.tm5944","state":"IN_DOUBT","expires":1548643460967,"resourceName":"10.0.75.1.tm15486431609630594410.0.75.1.tm5944"}]}
-{"id":"10.0.75.1.tm154864786186101906","wasCommitted":false,"participants":[{"uri":"10.0.75.1.tm1906","state":"IN_DOUBT","expires":1548648161866,"resourceName":"10.0.75.1.tm15486478618610190610.0.75.1.tm1906"}]}
-{"id":"10.0.75.1.tm154864423452501176","wasCommitted":false,"participants":[{"uri":"10.0.75.1.tm1176","state":"IN_DOUBT","expires":1548644534533,"resourceName":"10.0.75.1.tm15486442345250117610.0.75.1.tm1176"}]}
-{"id":"10.0.75.1.tm154864826081100001","wasCommitted":false,"participants":[{"uri":"10.0.75.1.tm1","state":"TERMINATED","expires":1548648276996,"resourceName":"slaveDataSource"}]}
