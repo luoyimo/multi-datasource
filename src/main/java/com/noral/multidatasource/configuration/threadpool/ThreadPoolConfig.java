@@ -1,16 +1,16 @@
 package com.noral.multidatasource.configuration.threadpool;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.stereotype.Component;
 
 /**
  * @Author hu
  * @Description:
  * @Date Create In 15:06 2019/1/28 0028
  */
-@Component
+@Configuration
 public class ThreadPoolConfig {
 
 
